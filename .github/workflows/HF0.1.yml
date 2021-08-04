@@ -1,0 +1,14 @@
+
+name: HF0.1_CI_BUILD
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    
+    steps:
+      - name: build
+        run: bash /home/roborock_rc/Cinderella_HF0_1/cinderella_build.bash
+      - name: move
+        run: bash /home/roborock_rc/Cinderella_HF0_1/move_deb.bash
