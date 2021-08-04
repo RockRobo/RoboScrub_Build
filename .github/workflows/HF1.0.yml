@@ -9,3 +9,5 @@ jobs:
     steps:
       - name: build
         run: bash /home/roborock_rc/Cinderella/cinderella_build.bash
+      - name: move
+        run: bash /home/roborock_rc/Cinderella/move_deb.bash
