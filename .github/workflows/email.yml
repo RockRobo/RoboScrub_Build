@@ -21,6 +21,6 @@ jobs:
           password: ${{ secrets.EMAIL_PASSWD }}
           subject: file:///home/roborock_rc/Cinderella/email_subject.txt
           body:  file:///home/roborock_rc/Cinderella/email.txt
-          to: 1260306690@qq.com
+          to: guomingli@roborock.com;wangshuangshuang@roborock.com;caolina@roborock.com
           from: GitHub Actions
           content_type: text/html
