@@ -11,3 +11,17 @@ jobs:
         run: bash /home/roborock_rc/Cinderella/cinderella_build.bash
       - name: move
         run: bash /home/roborock_rc/Cinderella/move_deb.bash
+      - name: 'release_note'
+        run: bash /home/roborock_rc/Cinderella/email.bash
+      - name: 'Send mail'
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.exmail.qq.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_NAME }}
+          password: ${{ secrets.EMAIL_PASSWD }}
+          subject: file:///home/roborock_rc/Cinderella/email_subject.txt
+          body:  file:///home/roborock_rc/Cinderella/email.txt
+          to: guomingli@roborock.com
+          from: GitHub Actions
+          content_type: text/html
