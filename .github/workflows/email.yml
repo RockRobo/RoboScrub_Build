@@ -10,6 +10,8 @@ jobs:
     steps:  
       - name: 'release_note'
         run: bash /home/roborock_rc/Cinderella/email.bash
+      - name: 'write'
+        run: echo "DATE=$(sed -n "1,100p" /home/roborock_rc/Cinderella/email.txt)" >>  $GITHUB_ENV
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
         with:
@@ -18,7 +20,7 @@ jobs:
           username: ${{ secrets.EMAIL_NAME }}
           password: ${{ secrets.EMAIL_PASSWD }}
           subject: test
-          body: ${{ cat /home/roborock_rc/Cinderella/email.txt }}
+          body: ${{env.DATE}}
           to: 1260306690@qq.com
           from: GitHub Actions
           content_type: text/html
