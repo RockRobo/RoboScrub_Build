@@ -18,7 +18,7 @@ jobs:
           username: ${{ secrets.EMAIL_NAME }}
           password: ${{ secrets.EMAIL_PASSWD }}
           subject: test
-          body: sed -n “1，100p” /home/roborock_rc/Cinderella/email.txt
+          body: echo $(sed -n “1，100p” /home/roborock_rc/Cinderella/email.txt)
           to: 1260306690@qq.com
           from: GitHub Actions
           content_type: text/html
