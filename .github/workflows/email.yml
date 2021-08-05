@@ -18,7 +18,7 @@ jobs:
           username: "guomingli@roborock.com"
           password: "Guo@0521"
           subject: test
-          body: cat /home/roborock_rc/Cinderella/email.txt
+          body: file:/home/roborock_rc/Cinderella/email.txt
           to: 1260306690@qq.com
           from: GitHub Actions
           content_type: text/html
