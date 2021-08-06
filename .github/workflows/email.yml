@@ -22,5 +22,6 @@ jobs:
           subject: (${{env.DATE}})
           body:  file:///home/roborock_rc/Cinderella/email.txt
           to: guomingli@roborock.com
-          from: GitHub Actions
+          cc: 1260306690@qq.com
+          from: 商用DEB打包机器人
           content_type: text/html
