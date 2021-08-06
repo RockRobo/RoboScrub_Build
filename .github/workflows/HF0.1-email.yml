@@ -1,0 +1,29 @@
+name: 'HF0.1-email'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bot:
+    runs-on: self-hosted
+    steps:  
+      - name: 'release_note'
+        run: bash /home/roborock_rc/Cinderella_HF0_1/release_note.sh
+      - name: 'write email'
+        run: bash /home/roborock_rc/Cinderella_HF0_1/email.bash
+      - name: 'get email subject'
+        run: echo "DATE=$(sed -n "1p" /home/roborock_rc/Cinderella_HF0_1/email_subject.txt)" >>  $GITHUB_ENV
+      - name: 'Send mail'
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.exmail.qq.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_NAME }}
+          password: ${{ secrets.EMAIL_PASSWD }}
+          subject: ${{env.DATE}}
+          body:  file:///home/roborock_rc/Cinderella_HF0_1/email.txt
+          to: 1260306690@qq.com
+         # to: ${{ secrets.EMAIL_TO }}
+         # cc: ${{ secrets.EMAIL_CC }}
+          from: 商用DEB打包机器人
+          content_type: text/html
