@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.EMAIL_PASSWD }}
           subject: ${{env.DATE}}
           body:  file:///home/roborock_rc/Cinderella/email.txt
-          to: 1260306690@qq.com #${{ secrets.EMAIL_TO }}
-          #cc: ${{ secrets.EMAIL_CC }}
+          to: ${{ secrets.EMAIL_TO }}
+          cc: ${{ secrets.EMAIL_CC }}
           from: 商用DEB打包机器人
           content_type: text/html
