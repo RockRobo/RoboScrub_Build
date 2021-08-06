@@ -4,10 +4,30 @@ on:
 
 jobs:
   build:
+    name: build
     runs-on: self-hosted
-    
     steps:
       - name: build
         run: bash /home/roborock_rc/Cinderella/cinderella_build.bash
+      - name: 'Send error mail'
+        if: ${{failure}}
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.exmail.qq.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_NAME }}
+          password: ${{ secrets.EMAIL_PASSWD }}
+          subject: 编译错误
+          body:  请检查编译
+          to: 1260306690@qq.com
+          from: 商用DEB打包机器人
+          content_type: text/html
+        
+  move_to_share:
+    name: move_to_share
+    runs-on: self-hosted
+    needs: build
+    steps:
       - name: move
         run: bash /home/roborock_rc/Cinderella/move_deb.bash
+        
