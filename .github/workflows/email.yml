@@ -11,7 +11,7 @@ jobs:
       - name: 'release_note'
         run: bash /home/roborock_rc/Cinderella/email.bash
       - name: 'write'
-        run: echo "DATE=$('sed -n "1p" /home/roborock_rc/Cinderella/email_subject.txt')" >>  $GITHUB_ENV
+        run: echo "DATE=$(sed -n "1p" /home/roborock_rc/Cinderella/email_subject.txt)" >>  $GITHUB_ENV
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
         with:
