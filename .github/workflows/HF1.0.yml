@@ -10,7 +10,7 @@ jobs:
       - name: build
         run: bash /home/roborock_rc/Cinderella/cinderella_build.bash
       - name: 'Send error mail'
-        if: ${{failure}}
+        if: ${{ failure() }}
         uses: dawidd6/action-send-mail@master
         with:
           server_address: smtp.exmail.qq.com
