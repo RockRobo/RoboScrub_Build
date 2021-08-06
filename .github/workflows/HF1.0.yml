@@ -17,8 +17,8 @@ jobs:
           server_port: 465
           username: ${{ secrets.EMAIL_NAME }}
           password: ${{ secrets.EMAIL_PASSWD }}
-          subject: 编译错误
-          body:  请检查编译
+          subject: HF1.0编译错误
+          body:  HF1.0请检查编译
           to: ${{ secrets.EMAIL_TO_DEVELOPER }}
           from: 商用DEB打包机器人
           content_type: text/html
@@ -38,8 +38,8 @@ jobs:
           server_port: 465
           username: ${{ secrets.EMAIL_NAME }}
           password: ${{ secrets.EMAIL_PASSWD }}
-          subject: 拷贝错误
-          body:  请检查拷贝
+          subject: HF1.0拷贝错误
+          body:  HF1.0请检查拷贝
           to: ${{ secrets.EMAIL_TO_DEVELOPER }}
           from: 商用DEB打包机器人
           content_type: text/html
