@@ -3,11 +3,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: build
+ copy_deb:
+    name: copy_deb
     runs-on: auto_test
     steps:
-      - name: build
+      - name: copy_deb
+        run: bash /home/roborock/auto_test/copy_deb.bash
+        
+  deb_install:
+    name: deb_install
+    runs-on: auto_test
+    needs: copy_deb
+    steps:
+      - name: deb_install
+        run: bash /home/roborock/auto_test/deb_install.bash
+        
+  mission_start:
+    name: mission_start
+    runs-on: auto_test
+    needs: [copy_deb, deb_install]
+    steps:
+      - name: mission_start
         run: bash /home/roborock/auto_test/mission_start.bash
  
         
