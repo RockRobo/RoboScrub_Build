@@ -2,8 +2,8 @@ name: HF1.0_AUTO_TEST
 on:
   workflow_dispatch:
 
-jobs:
- copy_deb:
+jobs:      
+  copy_deb:
     name: copy_deb
     runs-on: auto_test
     steps:
