@@ -1,0 +1,13 @@
+name: HF1.0_AUTO_TEST
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build
+    runs-on: auto_test
+    steps:
+      - name: build
+        run: bash /home/roborock/auto_test/mission_start.bash
+ 
+        
