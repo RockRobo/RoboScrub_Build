@@ -5,7 +5,7 @@ on:
 jobs:
   build:
     name: build
-    runs-on: self-hosted
+    runs-on: auto_build
     steps:
       - name: build
         run: bash /home/roborock/Cinderella/cinderella_build.bash
@@ -25,7 +25,7 @@ jobs:
         
   move_to_share:
     name: move_to_share
-    runs-on: self-hosted
+    runs-on: auto_build
     needs: build
     steps:
       - name: move
@@ -46,7 +46,7 @@ jobs:
         
         
   send_email:
-    runs-on: self-hosted
+    runs-on: auto_build
     needs: [build, move_to_share]
     steps:  
       - name: 'release_note'
