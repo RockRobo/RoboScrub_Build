@@ -27,7 +27,7 @@ jobs:
         run: bash /home/roborock/auto_test/mission_start.bash
         
   send_email:
-    runs-on: self-hosted
+    runs-on: auto_test
     needs: [copy_deb, deb_install, mission_start]
     steps:  
       - name: 'write email'
