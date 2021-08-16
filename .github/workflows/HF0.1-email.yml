@@ -5,7 +5,7 @@ on:
 
 jobs:
   bot:
-    runs-on: self-hosted
+    runs-on: auto_build
     steps:  
       - name: 'release_note'
         run: bash /home/roborock/Cinderella_HF0_1/release_note.sh
