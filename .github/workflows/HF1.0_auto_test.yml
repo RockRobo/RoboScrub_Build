@@ -33,7 +33,7 @@ jobs:
       - name: 'write email'
         run: bash /home/roborock/auto_test/write_email.bash
       - name: 'get email subject'
-        run: echo "DATE=(sed−n"1p"/home/roborock/Cinderella/email.txt)">>GITHUB_ENV
+        run: echo "DATE=(sed−n"1p"/home/roborock/auto_test/email.txt)">>GITHUB_ENV
       - name: 'Send email'
         uses: dawidd6/action-send-mail@master
         with:
