@@ -63,7 +63,7 @@ jobs:
           username: ${{ secrets.EMAIL_NAME }}
           password: ${{ secrets.EMAIL_PASSWD }}
           subject: ${{env.DATE}}
-          body:  file:///home/roborock/Cinderella/email.txt
+          body:  file:///home/roborock/Cinderella_HF1_0/email.txt
           to: ${{ secrets.EMAIL_TO }}
           cc: ${{ secrets.EMAIL_CC }}
           from: 商用DEB打包机器人
