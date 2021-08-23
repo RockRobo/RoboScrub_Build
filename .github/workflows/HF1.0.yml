@@ -8,7 +8,7 @@ jobs:
     runs-on: auto_build
     steps:
       - name: build
-        run: bash /home/roborock/Cinderella_HF_1_0/cinderella_build.bash
+        run: bash /home/roborock/Cinderella_HF1_0/cinderella_build.bash
       - name: 'Send build error mail'
         if: ${{ failure() }}
         uses: dawidd6/action-send-mail@master
@@ -29,7 +29,7 @@ jobs:
     needs: build
     steps:
       - name: move
-        run: bash /home/roborock/Cinderella_HF_1_0/move_deb.bash
+        run: bash /home/roborock/Cinderella_HF1_0/move_deb.bash
       - name: 'Send copy error mail'
         if: ${{ failure() }}
         uses: dawidd6/action-send-mail@master
@@ -50,11 +50,11 @@ jobs:
     needs: [build, move_to_share]
     steps:  
       - name: 'release_note'
-        run: bash /home/roborock/Cinderella_HF_1_0/release_note.sh
+        run: bash /home/roborock/Cinderella_HF1_0/release_note.sh
       - name: 'write email'
-        run: bash /home/roborock/Cinderella_HF_1_0/email.bash
+        run: bash /home/roborock/Cinderella_HF1_0/email.bash
       - name: 'get email subject'
-        run: echo "DATE=$(sed -n "1p" /home/roborock/Cinderella_HF_1_0/email_subject.txt)" >>  $GITHUB_ENV
+        run: echo "DATE=$(sed -n "1p" /home/roborock/Cinderella_HF1_0/email_subject.txt)" >>  $GITHUB_ENV
       - name: 'Send email'
         uses: dawidd6/action-send-mail@master
         with:
