@@ -1,0 +1,2 @@
+#!/bin/bash
+LD_PRELOAD=/opt/roborock/scrubber/nav/lib/liblibrobo_mock.so /opt/roborock/scrubber/nav/lib/base/BaseComponent

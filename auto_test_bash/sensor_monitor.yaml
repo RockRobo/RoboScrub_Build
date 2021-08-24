@@ -1,0 +1,20 @@
+topics_to_monitor:
+        laser: [throttle_scan, throttle_scan1, throttle_scan2, throttle_scan3]
+        pc2: [camera/tof/left/point_cloud, camera/tof/right/point_cloud, camera/tof/front/point_cloud, camera/tof/back/point_cloud, camera/stereo/depth/point_cloud]
+        amcl_pose: amcl_pose_valid
+
+error_timeout:  # s
+        odo: 0.0
+        lds: 0.0
+        cam: 0.0
+        ultra: 0.0
+        amcl_pose: 0.0
+
+pause_timeout:  # s
+        odo: 0.0
+        lds: 0.0
+        cam: 0.0
+        ultra: 0.0
+        amcl_pose: 0.0
+
+cold_timeout: 6000000.0  # s
