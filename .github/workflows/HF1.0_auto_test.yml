@@ -43,7 +43,8 @@ jobs:
           password: ${{ secrets.EMAIL_PASSWD }}
           subject: ${{env.DATE}}
           body:  file:///home/roborock/auto_test/email.txt
-          to: guomingli@roborock.com
+          to: ${{ secrets.EMAIL_TO }}
+          cc: ${{ secrets.EMAIL_CC }}
           from: 商用仿真测试机器人
           content_type: text/html
         
