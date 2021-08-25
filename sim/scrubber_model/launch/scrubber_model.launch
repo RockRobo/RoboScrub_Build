@@ -1,0 +1,7 @@
+<launch>
+  <arg name="model" />
+  <arg name="gui" default="False" />
+  <param name="use_gui" value="$(arg gui)" />
+  <param name="robot_description" command="$(find xacro)/xacro '$(optenv RR_FACTORY /mnt/factory)/model/scrubber_model.urdf.xacro'" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+</launch>
