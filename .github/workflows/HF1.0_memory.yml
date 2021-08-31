@@ -1,0 +1,24 @@
+name: HF1.0_memory_CI_BUILD
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build
+    runs-on: auto_build
+    steps:
+      - name: build
+        run: bash /home/roborock/Cinderella_memory/cinderella_build.bash
+      - name: 'Send build error mail'
+        if: ${{ failure() }}
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.exmail.qq.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_NAME }}
+          password: ${{ secrets.EMAIL_PASSWD }}
+          subject: HF1.0_memory编译错误
+          body:  HF1.0_memory请检查编译
+          to: ${{ secrets.EMAIL_TO_DEVELOPER }}
+          from: 商用DEB打包机器人
+          content_type: text/html
