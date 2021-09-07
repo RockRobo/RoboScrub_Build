@@ -22,3 +22,24 @@ jobs:
           to: ${{ secrets.EMAIL_TO_DEVELOPER }}
           from: 商用DEB打包机器人
           content_type: text/html
+      
+  move_to_share:
+    name: move_to_share
+    runs-on: auto_build
+    needs: build
+    steps:
+      - name: move
+        run: bash /home/roborock/Cinderella_memory/move_deb.bash
+      - name: 'Send copy error mail'
+        if: ${{ failure() }}
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.exmail.qq.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_NAME }}
+          password: ${{ secrets.EMAIL_PASSWD }}
+          subject: HF1.0_memory拷贝错误
+          body:  HF1.0_memory请检查拷贝
+          to: ${{ secrets.EMAIL_TO_DEVELOPER }}
+          from: 商用DEB打包机器人
+          content_type: text/html
