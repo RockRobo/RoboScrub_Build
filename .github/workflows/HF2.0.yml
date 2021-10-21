@@ -1,4 +1,4 @@
-name: HF1.1_CI_BUILD
+name: HF2.0_CI_BUILD
 on:
   workflow_dispatch:
 
