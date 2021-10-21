@@ -1,0 +1,70 @@
+name: HF1.1_CI_BUILD
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build
+    runs-on: auto_build
+    steps:
+      - name: build
+        run: bash /home/roborock/Cinderella_HF2_0/cinderella_build.bash
+      - name: 'Send build error mail'
+        if: ${{ failure() }}
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.exmail.qq.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_NAME }}
+          password: ${{ secrets.EMAIL_PASSWD }}
+          subject: HF2.0编译错误
+          body:  HF2.0请检查编译
+          to: ${{ secrets.EMAIL_TO_DEVELOPER }}
+          from: 商用DEB打包机器人
+          content_type: text/html
+        
+  move_to_share:
+    name: move_to_share
+    runs-on: auto_build
+    needs: build
+    steps:
+      - name: move
+        run: bash /home/roborock/Cinderella_HF2_0/move_deb.bash
+      - name: 'Send copy error mail'
+        if: ${{ failure() }}
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.exmail.qq.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_NAME }}
+          password: ${{ secrets.EMAIL_PASSWD }}
+          subject: HF2.0拷贝错误
+          body:  HF2.0请检查拷贝
+          to: ${{ secrets.EMAIL_TO_DEVELOPER }}
+          from: 商用DEB打包机器人
+          content_type: text/html
+        
+        
+  send_email:
+    runs-on: auto_build
+    needs: [build, move_to_share]
+    steps:  
+      - name: 'release_note'
+        run: bash /home/roborock/Cinderella_HF2_0/release_note.sh
+      - name: 'write email'
+        run: bash /home/roborock/Cinderella_HF2_0/email.bash
+      - name: 'get email subject'
+        run: echo "DATE=$(sed -n "1p" /home/roborock/Cinderella_HF2_0/email_subject.txt)" >>  $GITHUB_ENV
+      - name: 'Send email'
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.exmail.qq.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_NAME }}
+          password: ${{ secrets.EMAIL_PASSWD }}
+          subject: ${{env.DATE}}
+          body:  file:///home/roborock/Cinderella_HF2_0/email.txt
+          to: ${{ secrets.EMAIL_TO }}
+          cc: ${{ secrets.EMAIL_CC }}
+          from: 商用DEB打包机器人
+          content_type: text/html
